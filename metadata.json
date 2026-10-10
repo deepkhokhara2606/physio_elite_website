@@ -1,0 +1,8 @@
+{
+  "name": "PhysioElite | Dr. Bansi Kansara",
+  "description": "Physiotherapist & Advanced Fitness Instructor in Surat. Personalized home visit physiotherapy across Surat and 1-on-1 online rehabilitation consultations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
