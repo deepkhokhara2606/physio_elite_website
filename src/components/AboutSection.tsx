@@ -4,7 +4,24 @@ import { motion } from 'framer-motion';
 import { DOCTOR_INFO, CREDENTIAL_GROUPS } from '../data/physioData';
 
 export const AboutSection: React.FC = () => {
-  const [imageError, setImageError] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [allPhotosFailed, setAllPhotosFailed] = useState(false);
+
+  const aboutCandidates = [
+    '/images/about-bansi.jpg',
+    '/images/about-bansi.png',
+    '/images/about-bansi.webp',
+    '/images/dr-bansi.jpg',
+    '/images/dr-bansi.webp',
+  ];
+
+  const handlePhotoError = () => {
+    if (photoIndex < aboutCandidates.length - 1) {
+      setPhotoIndex((prev) => prev + 1);
+    } else {
+      setAllPhotosFailed(true);
+    }
+  };
 
   return (
     <section id="about" className="py-10 sm:py-16 lg:py-24 bg-white border-b border-stone-200/80">
@@ -40,27 +57,42 @@ export const AboutSection: React.FC = () => {
             className="lg:col-span-5"
           >
             <div className="bg-stone-50 rounded-3xl border border-stone-200 p-5 sm:p-7 shadow-xs relative overflow-hidden group">
-              {/* Doctor Consultation Visual Photo */}
-              <div className="relative aspect-4/3 rounded-2xl overflow-hidden mb-5 sm:mb-6 bg-stone-200 border border-stone-300/80">
-                <img
-                  src={!imageError ? '/images/about-bansi.jpg' : DOCTOR_INFO.aboutFallbackUrl}
-                  alt="Dr. Bansi Kansara consulting with a patient in Surat"
-                  className="w-full h-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-102"
-                  onError={() => {
-                    if (!imageError) {
-                      setImageError(true);
-                    }
-                  }}
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent pointer-events-none" />
-
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <div className="text-xs font-bold uppercase tracking-wider drop-shadow-xs">
-                    Dr. Bansi Kansara · BPT
+              {/* Doctor Consultation Visual Photo - Balanced portrait framing */}
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-5 sm:mb-6 bg-stone-200 border border-stone-300/80 shadow-xs">
+                {!allPhotosFailed ? (
+                  <img
+                    src={aboutCandidates[photoIndex]}
+                    alt="Dr. Bansi Kansara - Physiotherapist & Advanced Fitness Instructor in Surat"
+                    className="w-full h-full object-cover object-[center_46%] transition-transform duration-300 group-hover:scale-102"
+                    onError={handlePhotoError}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-emerald-900 to-stone-900 flex flex-col items-center justify-center p-6 text-center text-white">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400/40 flex items-center justify-center mb-3">
+                      <span className="font-display font-extrabold text-2xl text-emerald-300">DB</span>
+                    </div>
+                    <div className="font-display font-bold text-lg text-white">Dr. Bansi Kansara</div>
+                    <div className="text-xs text-emerald-200 mt-1">BPT · Advanced Fitness & Aerobics</div>
+                    <div className="text-[11px] text-stone-300 mt-0.5">Certified Antenatal & Postnatal Specialist</div>
                   </div>
-                  <div className="text-[11px] text-emerald-200">
-                    Surat Home Visits & Online Care
+                )}
+
+                {/* Soft gradient only at bottom edge to protect visibility of clothes and face */}
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-stone-950/75 via-stone-950/20 to-transparent pointer-events-none" />
+
+                {/* Refined Glassmorphic Clinician Badge */}
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <div className="inline-flex items-center gap-2.5 px-3 py-1.5 sm:py-2 rounded-xl bg-stone-950/80 backdrop-blur-md border border-white/20 text-white shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 ring-2 ring-emerald-400/30" />
+                    <div>
+                      <div className="text-xs font-bold leading-tight tracking-wide text-white drop-shadow-xs">
+                        Dr. Bansi Kansara · BPT
+                      </div>
+                      <div className="text-[10px] sm:text-[11px] text-emerald-200 font-medium leading-tight mt-0.5">
+                        Surat Home Visits & Online Care
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
