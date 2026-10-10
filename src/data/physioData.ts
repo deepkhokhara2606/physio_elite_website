@@ -18,7 +18,7 @@ export const DOCTOR_INFO = {
   photoUrl: '/images/dr-bansi.jpg',
   fallbackPhotoUrl: '/images/dr-bansi.webp',
   aboutPhotoUrl: '/images/about-bansi.jpg',
-  aboutFallbackUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=80',
+  aboutFallbackUrl: '/images/dr-bansi.jpg',
   quote: 'Healing starts when you feel understood. We don’t just treat your pain for a day — we teach your body how to stay strong forever.',
   coverageText: 'Personalized Home Visits across all areas of Surat & 1-on-1 Online Consultations',
   aboutBio: `Hello! I am Dr. Bansi Kansara, a Physiotherapist (BPT), Advanced Fitness & Aerobics Instructor, and Certified Antenatal & Postnatal Specialist in Surat. My philosophy is simple: real recovery is not just about silencing pain for a few hours with a heating pad. It is about understanding what your body needs, healing the root problem, and making you strong enough to move freely without fear. Whether I visit your home in Surat or guide you one-on-one through video, we work together step-by-step so you can play with your kids, walk comfortably, and get back to doing what you love.`,
