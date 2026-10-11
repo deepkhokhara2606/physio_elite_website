@@ -217,7 +217,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking }) => {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
           <div>
-            © {new Date().getFullYear()} PhysioElite · Dr. Bansi Kansara (BPT). "Move Better Every Day."
+            © {new Date().getFullYear()} PhysioElite · Dr. Bansi Kansara (BPT). "Movement & Recovery."
           </div>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <span>Surat Home Physiotherapy</span>
