@@ -14,17 +14,24 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
   variant = 'dark',
 }) => {
   const isLight = variant === 'light';
-  
-  // 1. Points directly to your uploaded logo.jpeg in public/images/
+
+  // Automatically detects transparent PNG first, then SVG, then original JPEG
+  const [logoCandidates] = useState<string[]>([
+    '/images/logo.png',
+    '/images/spinarth-logo.png',
+    '/images/logo.svg',
+    '/images/logo.jpeg',
+  ]);
+  const [candidateIndex, setCandidateIndex] = useState(0);
   const [photoLogo, setPhotoLogo] = useState<string | null>(() => {
     try {
       return (
         localStorage.getItem('spinarth_custom_logo') ||
         localStorage.getItem('physioelite_custom_logo') ||
-        '/images/logo.jpeg'
+        '/images/logo.png'
       );
     } catch {
-      return '/images/logo.jpeg';
+      return '/images/logo.png';
     }
   });
   const [imageError, setImageError] = useState(false);
@@ -53,10 +60,20 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
     };
   }, []);
 
-  // Dimension scaling
+  const handleImageError = () => {
+    if (candidateIndex < logoCandidates.length - 1) {
+      const nextIndex = candidateIndex + 1;
+      setCandidateIndex(nextIndex);
+      setPhotoLogo(logoCandidates[nextIndex]);
+    } else {
+      setImageError(true);
+    }
+  };
+
+  // Generous scaling so the spine emblem is clear and bold (no longer tiny)
   const iconSizes = {
-    sm: 'w-7 h-7 sm:w-8 sm:h-8',
-    md: 'w-9 h-9 sm:w-11 sm:h-11',
+    sm: 'w-8 h-8 sm:w-9 sm:h-9',
+    md: 'w-10 h-10 sm:w-12 sm:h-12',
     lg: 'w-14 h-14 sm:w-16 sm:h-16',
     xl: 'w-20 h-20 sm:w-24 sm:h-24',
   };
@@ -75,18 +92,22 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
     xl: 'text-xs sm:text-sm tracking-[0.24em]',
   };
 
+  const isOpaqueJpegOnDark = isLight && (photoLogo?.endsWith('.jpeg') || photoLogo?.endsWith('.jpg'));
+
   return (
-    <div className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
-      {/* Precision Emblem: Uses your uploaded logo.jpeg with clean fallback */}
+    <div className={`inline-flex items-center gap-2.5 sm:gap-3.5 ${className}`}>
+      {/* Precision Emblem Container */}
       <div
-        className={`relative ${iconSizes[size]} shrink-0 rounded-lg overflow-hidden flex items-center justify-center`}
+        className={`relative ${iconSizes[size]} shrink-0 flex items-center justify-center transition-transform group-hover:scale-105 ${
+          isOpaqueJpegOnDark ? 'bg-white rounded-xl p-1 shadow-sm' : ''
+        }`}
       >
         {photoLogo && !imageError ? (
           <img
             src={photoLogo}
             alt="Spinarth Physio Logo"
-            className="w-full h-full object-contain"
-            onError={() => setImageError(true)}
+            className="w-full h-full object-contain drop-shadow-2xs"
+            onError={handleImageError}
           />
         ) : (
           <svg
@@ -141,9 +162,10 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
         )}
       </div>
 
-      {/* Typography: gap-2 ensures SPINARTH and PHYSIO have distinct space */}
+      {/* Typography: Wordmark and Motto with distinct spacing */}
       <div className="flex flex-col justify-center">
-        <div className="flex items-center gap-2 tracking-tight">
+        {/* Brand Name */}
+        <div className="flex items-center gap-2 sm:gap-2.5 tracking-tight">
           <span
             className={`font-display font-black ${textSizes[size]} ${
               isLight ? 'text-white' : 'text-teal-950'
