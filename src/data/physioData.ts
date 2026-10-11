@@ -2,10 +2,10 @@ import { ServiceItem, MovementPattern, ReviewItem } from '../types';
 
 export const DOCTOR_INFO = {
   name: 'Dr. Bansi Kansara',
-  brand: 'PHYSIOELITE',
+  brand: 'SPINARTH PHYSIO',
   degrees: 'BPT · Advanced Fitness & Aerobics Instructor · Certified Antenatal & Postnatal Specialist',
   headline: 'Physiotherapist, Advanced Fitness & Aerobics Instructor',
-  tagline: 'Move Better Every Day.',
+  tagline: 'Movement & Recovery',
   subTagline: 'From pain relief to stronger movement.',
   experience: '3+ Years Clinical Practice',
   phone: '9106387568',
