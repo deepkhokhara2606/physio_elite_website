@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/physio_elite_website/',
+    base: '/',
 
     plugins: [react(), tailwindcss()],
 
