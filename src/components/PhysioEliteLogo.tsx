@@ -150,12 +150,12 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
               isLight ? 'text-white' : 'text-teal-950'
             }`}
           >
-            PHYSIO
+            SPINARTH
           </span>
           <span
             className={`font-display font-black tracking-tight ${textSizes[size]} text-teal-600`}
           >
-            ELITE
+            PHYSIO
           </span>
         </div>
 
@@ -169,7 +169,7 @@ export const PhysioEliteLogo: React.FC<PhysioEliteLogoProps> = ({
               isLight ? 'text-teal-300' : 'text-stone-700'
             }`}
           >
-            MOVE BETTER EVERY DAY
+            MOVEMENT & RECOVERY
           </span>
         )}
       </div>
