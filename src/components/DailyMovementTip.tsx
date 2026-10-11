@@ -14,7 +14,7 @@ export const DailyMovementTip: React.FC = () => {
   };
 
   const handleShare = () => {
-    const textToShare = `💡 Dr. Bansi's Movement Tip: "${currentTip.title}" - ${currentTip.body} (PhysioElite Surat · Call/WhatsApp 9106387568)`;
+    const textToShare = `💡 Dr. Bansi's Movement Tip: "${currentTip.title}" - ${currentTip.body} (Spinarth Physio Surat · Call/WhatsApp 9106387568)`;
     navigator.clipboard.writeText(textToShare);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
